@@ -1,7 +1,6 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits import mplot3d
 from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 
@@ -45,14 +44,14 @@ def init_func():
     plt.xlabel('time')
     plt.ylabel('theta')
 
-x1 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((9.8)* np.sin(x))')[0]
+x1 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((9.8)* np.sin(x))')[0]    #non linear damped pendulum with resistance factor 0.2
 y1 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((9.8)* np.sin(x))')[1]
 
 x2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[0]
-y2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[1]  # pendulum with positive resistance factor
+y2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[1]     #pendulum with positive resistance factor
 
 x3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[0]
-y3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[1] 
+y3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[1]  #pendulum on moon
 
 
 def anim(i):
