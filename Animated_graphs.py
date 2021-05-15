@@ -48,35 +48,23 @@ def init_func():
 x1 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((9.8)* np.sin(x))')[0]
 y1 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((9.8)* np.sin(x))')[1]
 
+x2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[0]
+y2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[1]  # pendulum with positive resistance factor
 
-def update_plot_1(i):
+x3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[0]
+y3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[1] 
+
+
+def anim(i):
     ax.plot(x1[i:i + data_skip], y1[i:i + data_skip], color='k')
+    ax.plot(x2[i:i + data_skip], y2[i:i + data_skip], color='r')
+    ax.plot(x3[i:i + data_skip], y3[i:i + data_skip], color='g')
     plt.xlim(x1[0], x1[-1])
     plt.ylim((-5, 5))
 
 
-anim1 = FuncAnimation(fig, update_plot_1, frames=np.arange(0, len(x1), data_skip), init_func=init_func, interval=5)
-
-x2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[0]
-y2 = coordinate_points(10, 1, 0, 0.01, '(0.2 * v) - ((9.8)* np.sin(x))')[1]  # pendulum with positive resistance factor
-
-
-def update_plot_2(i):
-    ax.plot(x2[i:i + data_skip], y2[i:i + data_skip], color='r')
-    plt.xlim(x2[0], x2[-1])
-    plt.ylim((-5, 5))
-
-
-anim2 = FuncAnimation(fig, update_plot_2, frames=np.arange(0, len(x2), data_skip), init_func=init_func, interval=5)
-
-x3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[0]
-y3 = coordinate_points(10, 1, 0, 0.01, '(-0.2 * v) - ((1.625)* np.sin(x))')[1]                                    # pendulum on moon
-
-def update_plot_3(i):
-    ax.plot(x3[i:i + data_skip], y3[i:i + data_skip], color='g')
-    plt.xlim(x3[0], x3[-1])
-    plt.ylim((-5, 5))
-
-anim3 = FuncAnimation(fig, update_plot_3, frames=np.arange(0, len(x3), data_skip), init_func=init_func, interval=5)
+anim1 = FuncAnimation(fig, anim, frames=np.arange(0, len(x1), data_skip), init_func=init_func, interval=5)
 
 plt.show()
+anim1.save('animations.mp4', dpi=150, fps=60, writer='ffmpeg')
+
